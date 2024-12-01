@@ -4,8 +4,8 @@ use macroquad::prelude::*;
 #[derive(PartialEq, Clone, Copy)]
 enum GameState {
     Menu,
-    Day1,
-    Day2,
+    Day1Part1,
+    Day1Part2,
 }
 
 fn window_conf() -> Conf {
@@ -28,7 +28,7 @@ async fn main() {
         ..Default::default()
     };
     let mut selected_day = 0;
-    let days = vec![GameState::Day1, GameState::Day2];
+    let days = vec![GameState::Day1Part1, GameState::Day1Part2];
 
     loop {
         clear_background(BLACK);
@@ -44,17 +44,16 @@ async fn main() {
                 camera.target.x = (screen_width() / 2.) + 100. * (selected_day as f32);
                 set_camera(&camera);
                 draw_text("Main Menu", 20.0, 40.0, 30.0, WHITE);
-                draw_text("Press 1 for Day 1", 20.0, 80.0, 20.0, WHITE);
                 if is_key_pressed(KeyCode::Enter) {
                     state = days[selected_day];
                 }
             }
-            GameState::Day1 => {
-                days::day01::solve(&camera).await;
+            GameState::Day1Part1 => {
+                days::day01_p1::solve(&camera).await;
                 state = GameState::Menu;
             }
-            GameState::Day2 => {
-                days::template::solve(&camera).await;
+            GameState::Day1Part2 => {
+                days::day01_p2::solve(&camera).await;
                 state = GameState::Menu;
             }
         }
