@@ -6,6 +6,7 @@ enum GameState {
     Menu,
     Day1Part1,
     Day1Part2,
+    Day6,
 }
 
 fn window_conf() -> Conf {
@@ -28,7 +29,7 @@ async fn main() {
         ..Default::default()
     };
     let mut selected_day = 0;
-    let days = vec![GameState::Day1Part1, GameState::Day1Part2];
+    let days = vec![GameState::Day1Part1, GameState::Day1Part2, GameState::Day6];
 
     loop {
         clear_background(BLACK);
@@ -54,6 +55,10 @@ async fn main() {
             }
             GameState::Day1Part2 => {
                 days::day01_p2::solve(&camera).await;
+                state = GameState::Menu;
+            }
+            GameState::Day6 => {
+                days::day06::solve(&mut camera).await;
                 state = GameState::Menu;
             }
         }
