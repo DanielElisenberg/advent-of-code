@@ -2,10 +2,9 @@ use std::{collections::HashSet, fs::read_to_string};
 
 use macroquad::{
     camera::{set_camera, Camera2D},
-    color::{BLACK, GRAY, RED, WHITE},
+    color::{GRAY, RED, WHITE},
     input::{is_key_pressed, KeyCode},
     math::{vec2, Vec2},
-    shapes::draw_rectangle,
     text::draw_text,
     texture::{draw_texture, load_texture, Texture2D},
     time::get_frame_time,
