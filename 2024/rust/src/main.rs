@@ -8,6 +8,7 @@ enum GameState {
     Day1Part2,
     Day6,
     Day10Part1,
+    Day12Part1,
 }
 
 fn window_conf() -> Conf {
@@ -35,6 +36,7 @@ async fn main() {
         GameState::Day1Part2,
         GameState::Day6,
         GameState::Day10Part1,
+        GameState::Day12Part1,
     ];
 
     loop {
@@ -69,6 +71,10 @@ async fn main() {
             }
             GameState::Day10Part1 => {
                 days::day10_p1::solve(&mut camera).await;
+                state = GameState::Menu;
+            }
+            GameState::Day12Part1 => {
+                days::day12_p1::solve(&mut camera).await;
                 state = GameState::Menu;
             }
         }
